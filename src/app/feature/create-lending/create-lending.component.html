@@ -7,7 +7,7 @@
         <label>Cliente</label>
         <select id="clientid" class="form-control" formControlName="clientid">
           <option value=""></option>
-          <option *ngFor="let client  of clientsList" value="{{client.id}}">{{client.name}}</option>
+          <option *ngFor="let client  of clientsList" value="{{client.id}}">{{client.id}}-{{client.name}}</option>
         </select>
         <span *ngIf="lendingForm.controls['clientid'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
