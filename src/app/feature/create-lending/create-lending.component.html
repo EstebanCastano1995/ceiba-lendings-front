@@ -1,1 +1,36 @@
-<p>create-lending works!</p>
+
+<div class="create-container">
+  <p class="welcome">Registrar Prestamo</p>
+  <div class="form">
+    <form [formGroup]="lendingForm">
+      <div class="form-group">
+        <label>Cliente</label>
+        <select id="clientid" class="form-control" formControlName="clientid">
+          <option value=""></option>
+          <option *ngFor="let client  of clientsList" value="{{client.id}}">{{client.name}}</option>
+        </select>
+        <span *ngIf="lendingForm.controls['clientid'].hasError('required')">
+          <strong>{{ "validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Valor prestamo</label>
+        <input id="lendingvalue" type="number" class="form-control" formControlName="lendingvalue" />
+        <span *ngIf="lendingForm.controls['lendingvalue'].hasError('required')">
+          <strong>{{ "validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Fecha de retorno</label>
+        <input id="lendingreturndate" type="date" class="form-control" formControlName="lendingreturndate" />
+        <span *ngIf="lendingForm.controls['lendingreturndate'].hasError('required')">
+          <strong>{{ "validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      
+      <button id="createLendingButton" class="btn btn-primary" (click)="createLending()">
+        Registrar
+      </button>
+    </form>
+  </div>
+</div>

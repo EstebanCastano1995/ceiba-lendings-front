@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../core/services/client.service';
+import { Client } from '../../shared/Client';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+
 
 @Component({
   selector: 'app-create-lending',
@@ -7,9 +11,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateLendingComponent implements OnInit {
 
-  constructor() { }
+  clientsList: Client[];
+
+  lendingForm: FormGroup;
+
+
+  constructor(private clientService: ClientService) { }
 
   ngOnInit() {
+    this.lendingForm = new FormGroup({
+      clientid: new FormControl("clientid", [Validators.required]),
+      lendingvalue: new FormControl("lendingvalue", [Validators.required]),
+      lendingreturndate: new FormControl("lendingreturndate", [Validators.required])
+    });
+
+    this.clientService.getClients().subscribe(
+      response => {
+        let result = response.json();
+        if (result) {
+          this.clientsList = result;
+        } else {
+          console.log('error');
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../../core/services/payment.service';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Payment } from '../../shared/Payment';
+import { Lending } from '../../shared/Lending';
+import { LendingService } from '../../core/services/lending.service';
 
 @Component({
   selector: 'app-payment',
@@ -12,8 +14,10 @@ export class PaymentComponent implements OnInit {
 
   public paymentForm: FormGroup;
 
+  lendingsList: Lending[];
 
-  constructor(private paymentService: PaymentService) { }
+
+  constructor(private paymentService: PaymentService, private lendingsService: LendingService) { }
 
   ngOnInit() {
     this.paymentForm = new FormGroup({
@@ -21,6 +25,20 @@ export class PaymentComponent implements OnInit {
       paymentdate: new FormControl("paymentdate", [Validators.required]),
       paymentvalue: new FormControl("paymentvalue", [Validators.required])
     });
+
+    this.lendingsService.getLendings().subscribe(
+      response => {
+        let result = response.json();
+        if (result) {
+          this.lendingsList = result;
+        } else {
+          console.log('error');
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   createPayment() {

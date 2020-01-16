@@ -6,6 +6,8 @@
       <th scope="col">Fecha préstamo</th>
       <th scope="col">Fecha de retorno</th>
       <th scope="col">Valor</th>
+      <th scope="col">Valor retorno</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +17,10 @@
       <td>{{ lending.lendingdate }}</td>
       <td>{{ lending.lendingreturndate }}</td>
       <td>{{ lending.lendingvalue }}</td>
+      <td>{{ lending.lendingtotalamount }}</td>
+      <td>
+        <button class="btn btn-primary" id="btnUpdate" (click)="updateLending(lending)">Actualizar</button>
+      </td>
     </tr>
   </tbody>
 </table>
