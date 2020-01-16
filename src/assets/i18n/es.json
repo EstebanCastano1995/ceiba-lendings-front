@@ -1,0 +1,82 @@
+{
+  "authentication": {
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "menu": {
+    "permissions": "Permissions",
+    "users": "Users",
+    "profile": "Profile",
+    "documents": "Documents",
+    "maps": "Maps"
+  },
+  "forms": {
+    "login": "Iniciar sesión",
+	"salida_paciente": "Salida paciente: ",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "available_urgencias": "Pacientes",
+    "loans": "Préstamos",
+    "do_loan": "Nuevo paciente",
+    "spanish": "Español",
+    "english": "Inglés",
+    "logout": "Cerrar sesión",
+    "isbn": "IDENTIFICACIóN",
+    "name": "NOMBRE",
+    "inventory": "FECHA INGRESO",
+    "available": "HOSPITALIZADO",
+	"esCirugia": "OPERADO",
+	"eps" : "EPS",
+    "delete": "Eliminar",
+	"facturar": "Facturar",
+	"operar": "Operar",
+	"hospitalizar": "Hospitalizar",
+    "new": "Nueva urgencia",
+    "request_date": "FECHA DE SOLICITUD",
+    "delivery_date": "FECHA DE ENTREGA",
+    "user_name": "NOMBRE DE USUARIO",
+    "loan": "Préstamo",
+    "person_name": "NOMBRE DE PERSONA",
+    "save": "Guardar",
+	"return": "Volver",
+    "edit_urgencia": "Editar paciente",
+    "create_urgencia": "Ingresar paciente",
+    "username": "Nombre de paciente"
+  },
+  "validation": {
+    "required_field": "Este campo es requerido",
+    "incorrect_email_format": "Formato incorrecto de email",
+    "8_characters_minimum":"El tamaño debe ser de mínimo 8 caractéres"
+  },
+  "buttons": {
+    "new_role": "New role",
+    "save_role": "Save role",
+    "new_user": "New user",
+    "save": "Save",
+    "cancel": "NO",
+    "new_document": "New document",
+    "download_file": "Download file",
+    "ok": "OK",
+    "yes": "SI"
+  },
+  "alerts": {
+    "congratulations": "Felicitaciones!",
+    "confirm": "Confirmar",
+    "error": "Error",
+    "deleted_urgencia": "El paciente se ha eliminado",
+	"factuar_exito": "El paciente ha salido exitosamente",
+    "sure_to_delete": "¿Está seguro de eliminar este registro?",
+	"sure_to_volver": "¿Está seguro que desea salir?",
+	"registrar_operacion": "Se registro la operación",
+	"registrar_hospitalizacion": "Se registro la hospitalización",
+    "urgencia_doesnt_exist":"El libro no existe",
+	"sure_to_facturar": "¿Está seguro de dar salida al paciente?",
+    "yes": "Si",
+    "cancel": "Cancelar",
+    "important": "Importante",
+    "success": "Exito",
+    "upload_can_take_long": "La carga de las tarifas se hará en segundo plano y puede tomar varios minutos.",
+    "stored_urgencia":"Registro existoso",
+    "not_login":"No puede iniciar sesión, intente más tarde"
+  }
+}

@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Identificación</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Fecha de nacimiento</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente  of clientsList">
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.name }}</td>
+      <td>{{ cliente.birthdate }}</td>
+      <td>{{ cliente.address }}</td>
+      <td>{{ cliente.phone }}</td>
+      <td>
+        <button class="btn btn-danger" id="btnEliminar" (click)="deleteClient(cliente)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

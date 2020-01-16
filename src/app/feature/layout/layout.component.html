@@ -1,0 +1,83 @@
+<div class="sidebar-toggled">
+  <nav style="display: block;" class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand mr-1" href="index.html" style="margin:15px;">CPrestaFácil</a>
+
+    <button (click)="showSideBarMethod();" class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle"
+            href="#">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="icono">
+      <img src="../../assets/images/icon.png" width="50px" height="50px">
+    </div>
+
+  </nav>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav" [ngClass]="{'showSidebarClass': showSidebar}">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">
+          <i class="fas fa-fw fa-tachometer-alt" style="margin:10px;"></i>
+          <span>Inicio</span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user" style="margin:10px;"></i>
+          <span>Clientes</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <a class="dropdown-item" routerLink="/home/client" routerLinkActive="active">Listar clientes</a>
+          <a class="dropdown-item" routerLink="/home/client/create" routerLinkActive="active">Crear clientes</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-money" style="margin:10px;"></i>
+          <span>Prestamos</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <a class="dropdown-item" routerLink="/home/lending" routerLinkActive="active">Listar prestamos</a>
+          <a class="dropdown-item" routerLink="/home/lending/create" routerLinkActive="active">Crear prestamos</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-chart-area" style="margin:10px;"></i>
+          <span>Pagos</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <a class="dropdown-item" routerLink="/home/payment" routerLinkActive="active">Crear abono</a>
+
+        </div>
+      </li>
+    </ul>
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <div class="card-body">
+
+          <router-outlet></router-outlet>
+
+        </div>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+  </div>
+  <!-- /#wrapper -->
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+</div>

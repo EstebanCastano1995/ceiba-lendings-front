@@ -1,0 +1,32 @@
+<div class="create-container">
+  <p class="welcome">Registrar abono</p>
+  <div class="form">
+    <form [formGroup]="clientForm">
+      <div class="form-group">
+        <label>Prestamo</label>
+        <input id="lendingid" type="text" class="form-control" formControlName="lendingid" />
+        <span *ngIf="clientForm.controls['lendingid'].hasError('required')">
+          <strong>{{ "validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Valor</label>
+        <input id="paymentvalue" type="number" class="form-control" formControlName="paymentvalue" />
+        <span *ngIf="clientForm.controls['paymentvalue'].hasError('required')">
+          <strong>{{ "validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Fecha</label>
+        <input id="paymentdate" type="date" class="form-control" formControlName="paymentdate" />
+        <span *ngIf="clientForm.controls['paymentdate'].hasError('required')">
+          <strong>{{ "validation.required_field" | translate }}</strong>
+        </span>
+      </div>
+
+      <button id="createPaymentButton" class="btn btn-primary" (click)="createPayment()">
+        Registrar
+      </button>
+    </form>
+  </div>
+</div>
