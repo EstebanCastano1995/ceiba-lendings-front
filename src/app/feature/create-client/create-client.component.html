@@ -1,3 +1,8 @@
+<div [ngClass]="{'alert alert-danger':!resultOperation,'alert alert-info':resultOperation,'alert-all':true}" *ngIf="displaymessage">
+  <strong>Resultado : </strong> {{responsemessage}}
+  <button type="button" class="close" data-dismiss="alert" (click)="closeMessageResponse()">&times;</button>
+</div>
+
 <div class="create-container">
   <p class="welcome">Registrar Cliente</p>
   <div class="form">

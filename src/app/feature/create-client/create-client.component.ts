@@ -12,6 +12,12 @@ export class CreateClientComponent implements OnInit {
 
   public clientForm: FormGroup;
 
+  displaymessage: Boolean;
+
+  responsemessage: string;
+
+  resultOperation: Boolean;
+
   constructor(private clientService: ClientService) { }
 
   ngOnInit() {
@@ -45,11 +51,22 @@ export class CreateClientComponent implements OnInit {
       console.log(result);
       if (result) {
         console.log(result);
+        this.showMessageResponse(true, "Cliente creado");
       }
     }, err => {
       console.log(err);
-   
+        this.showMessageResponse(false, JSON.parse(err._body).message);
     });
+  }
+
+  private showMessageResponse(result: boolean, response: string) {
+    this.displaymessage = true;
+    this.responsemessage = response;
+    this.resultOperation = result;
+  }
+
+  private closeMessageResponse() {
+    this.displaymessage = false;
   }
 
 }

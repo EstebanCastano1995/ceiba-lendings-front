@@ -16,13 +16,18 @@ export class PaymentComponent implements OnInit {
 
   lendingsList: Lending[];
 
+  displaymessage: Boolean;
+
+  responsemessage: string;
+
+  resultOperation: Boolean;
+
 
   constructor(private paymentService: PaymentService, private lendingsService: LendingService) { }
 
   ngOnInit() {
     this.paymentForm = new FormGroup({
       lendingid: new FormControl("lendingid", [Validators.required]),
-      paymentdate: new FormControl("paymentdate", [Validators.required]),
       paymentvalue: new FormControl("paymentvalue", [Validators.required])
     });
 
@@ -33,10 +38,12 @@ export class PaymentComponent implements OnInit {
           this.lendingsList = result;
         } else {
           console.log('error');
+          this.showMessageResponse(false, "Error obteniendo prestamos");
         }
       },
       err => {
         console.log(err);
+        this.showMessageResponse(false, JSON.parse(err._body).message);
       }
     );
   }
@@ -51,20 +58,38 @@ export class PaymentComponent implements OnInit {
     }
 
     let payment = new Payment();
-    payment.id = controls["lendingid"].value;
+    payment.lendingid = new Lending();
+    payment.lendingid.id = controls["lendingid"].value;
     payment.paymentvalue = controls["paymentvalue"].value;
-    payment.paymentdate = controls["paymentdate"].value;
-   
+    payment.paymentdate = new Date();
+
+    this.lendingsList.forEach(lending => {
+      if (lending.id == payment.lendingid.id) {
+        payment.lendingid = lending;
+      }
+    });
 
     this.paymentService.createPayment(payment).subscribe(data => {
       let result = data;
       console.log(result);
       if (result) {
         console.log(result);
+        this.showMessageResponse(true, "Se ha registrado el pago");
       }
     }, err => {
-      console.log(err);
+        console.log(err);
+        this.showMessageResponse(false, JSON.parse(err._body).message);
     });
+  }
+
+  private showMessageResponse(result: boolean, response: string) {
+    this.displaymessage = true;
+    this.responsemessage = response;
+    this.resultOperation = result;
+  }
+
+  private closeMessageResponse() {
+    this.displaymessage = false;
   }
 
 }

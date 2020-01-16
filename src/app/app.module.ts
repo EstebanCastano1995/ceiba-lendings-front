@@ -46,7 +46,7 @@ import { CreateLendingComponent } from './feature/create-lending/create-lending.
     HttpModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [LayoutComponent],
   providers: [

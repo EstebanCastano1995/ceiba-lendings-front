@@ -1,12 +1,15 @@
+<div [ngClass]="{'alert alert-danger':!resultOperation,'alert alert-info':resultOperation,'alert-all':true}" *ngIf="displaymessage">
+  <strong>Resultado : </strong> {{responsemessage}}
+  <button type="button" class="close" data-dismiss="alert" (click)="closeMessageResponse()">&times;</button>
+</div>
 
 <div class="create-container">
   <p class="welcome">Registrar Prestamo</p>
   <div class="form">
     <form [formGroup]="lendingForm">
-      <div class="form-group">
+      <div class="form-group" *ngIf="!navigated">
         <label>Cliente</label>
         <select id="clientid" class="form-control" formControlName="clientid">
-          <option value=""></option>
           <option *ngFor="let client  of clientsList" value="{{client.id}}">{{client.id}}-{{client.name}}</option>
         </select>
         <span *ngIf="lendingForm.controls['clientid'].hasError('required')">

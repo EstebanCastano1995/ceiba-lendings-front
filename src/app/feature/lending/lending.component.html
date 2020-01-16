@@ -1,9 +1,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th scope="col">Préstamo</th>
       <th scope="col">Identificación</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Préstamo</th>
       <th scope="col">Fecha préstamo</th>
       <th scope="col">Fecha de retorno</th>
       <th scope="col">Valor</th>
@@ -13,9 +13,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let lending  of lendingsList">
+      <td>{{ lending.id }}</td>
       <td>{{ lending.clientid.id }}</td>
       <td>{{ lending.clientid.name }}</td>
-      <td>{{ lending.id }}</td>
       <td>{{ lending.lendingdate }}</td>
       <td>{{ lending.lendingreturndate }}</td>
       <td>{{ lending.lendingvalue }}</td>

@@ -11,9 +11,46 @@ export class ClientComponent implements OnInit {
 
   clientsList: Client[];
 
+  displaymessage: Boolean;
+
+  responsemessage: string;
+
+  resultOperation: Boolean;
+
   constructor(private clientService: ClientService) { }
 
   ngOnInit() {
+    this.getClients();
+  }
+
+  deleteClient(cliente: Client) {
+    this.clientService.deleteClient(cliente).subscribe(
+      response => {
+        if (response) {
+          this.showMessageResponse(true, "Cliente eliminado");
+          this.getClients();
+        } else {
+          this.showMessageResponse(false, "Errror deleteting client");
+        }
+      },
+      err => {
+        console.log(err);
+        this.showMessageResponse(false, JSON.parse(err._body).message);
+      }
+    );
+  }
+
+  private showMessageResponse(result: boolean, response: string) {
+    this.displaymessage = true;
+    this.responsemessage = response;
+    this.resultOperation = result;
+  }
+
+  private closeMessageResponse() {
+    this.displaymessage = false;
+  }
+
+  private getClients() {
     this.clientService.getClients().subscribe(
       response => {
         let result = response.json();
@@ -21,26 +58,12 @@ export class ClientComponent implements OnInit {
           this.clientsList = result;
         } else {
           console.log('error');
+          this.showMessageResponse(false, "Errror getting clients");
         }
       },
       err => {
         console.log(err);
-      }
-    );
-  }
-
-  deleteClient(cliente: Client) {
-    this.clientService.deleteClient(cliente).subscribe(
-      response => {
-        let result = response.json();
-        if (result) {
-          this.clientsList = result;
-        } else {
-          console.log('error');
-        }
-      },
-      err => {
-        console.log(err);
+        this.showMessageResponse(false, err);
       }
     );
   }
