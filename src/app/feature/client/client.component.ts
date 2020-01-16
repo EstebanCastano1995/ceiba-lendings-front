@@ -40,16 +40,6 @@ export class ClientComponent implements OnInit {
     );
   }
 
-  private showMessageResponse(result: boolean, response: string) {
-    this.displaymessage = true;
-    this.responsemessage = response;
-    this.resultOperation = result;
-  }
-
-  private closeMessageResponse() {
-    this.displaymessage = false;
-  }
-
   private getClients() {
     this.clientService.getClients().subscribe(
       response => {
@@ -66,6 +56,13 @@ export class ClientComponent implements OnInit {
         this.showMessageResponse(false, err);
       }
     );
+  }
+
+  private showMessageResponse(result: boolean, response: string) {
+    this.displaymessage = true;
+    this.responsemessage = response;
+    this.resultOperation = result;
+    setTimeout(() => { this.displaymessage = false; }, 4000);
   }
 
 }

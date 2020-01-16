@@ -10,7 +10,11 @@ import { CreateLendingComponent } from './feature/create-lending/create-lending.
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "home/dashboard", pathMatch: 'full' },
+  {
+    path: "",
+    redirectTo: "home",
+    pathMatch: 'full'
+  },
   {
     path: "home",
     component: LayoutComponent,

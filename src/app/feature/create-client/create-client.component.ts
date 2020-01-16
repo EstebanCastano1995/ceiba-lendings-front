@@ -63,10 +63,7 @@ export class CreateClientComponent implements OnInit {
     this.displaymessage = true;
     this.responsemessage = response;
     this.resultOperation = result;
-  }
-
-  private closeMessageResponse() {
-    this.displaymessage = false;
+    setTimeout(() => { this.displaymessage = false; }, 4000);
   }
 
 }

@@ -4,8 +4,7 @@ import { Client } from '../../shared/Client';
 import { Lending } from '../../shared/Lending';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { LendingService } from '../../core/services/lending.service';
-import { UtilService } from '../../core/services/util.service';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -27,8 +26,8 @@ export class CreateLendingComponent implements OnInit {
 
   resultOperation: Boolean;
 
-  constructor(private utilService: UtilService, private clientService: ClientService,
-    private lendingService: LendingService, private router: Router) { }
+  constructor(private clientService: ClientService,
+    private lendingService: LendingService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -40,17 +39,28 @@ export class CreateLendingComponent implements OnInit {
       lendingreturndate: new FormControl("lendingreturndate", [Validators.required])
     });
 
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        let data = null;
+        if (params['lendingdata'])
+          data = JSON.parse(params['lendingdata']);
+        else 
+          this.navigated = false;
 
-    let data = this.utilService.getLendingToUpdate();
-    if (data != null && data != undefined && data.id) {
-      this.navigated = true;
-      let data = this.utilService.getLendingToUpdate();
-      this.lendingForm.controls['lendingvalue'].setValue(data.lendingvalue);
-      this.lendingForm.controls['lendingreturndate'].setValue(data.lendingreturndate);
-      this.lendingForm.controls['clientid'].setValue(data.clientid);
-      this.clientsList = [];
-      this.clientsList.push(data.clientid);
-    }
+        if (data != null && data != undefined && data.id) {
+          this.navigated = true;
+          this.lendingForm.controls['lendingvalue'].setValue(data.lendingvalue);
+          this.lendingForm.controls['lendingreturndate'].setValue(data.lendingreturndate);
+          this.lendingForm.controls['clientid'].setValue(data.clientid);
+          this.clientsList = [];
+          this.clientsList.push(data.clientid);
+        }
+        else {
+          this.navigated = false;
+        }
+      }
+    )
+   
 
     if (!this.navigated) {
       this.clientService.getClients().subscribe(
@@ -102,7 +112,6 @@ export class CreateLendingComponent implements OnInit {
       console.log(result);
       if (result) {
         console.log(result);
-        this.utilService.setLendingToUpdate(null);
         this.showMessageResponse(true, "Préstamo creado");
       }
     }, err => {
@@ -115,7 +124,6 @@ export class CreateLendingComponent implements OnInit {
   updateLending() {
     let controls = this.lendingForm.controls;
     let lending = new Lending();
-    lending = this.utilService.getLendingToUpdate();
     lending.lendingreturndate = controls["lendingreturndate"].value;
     lending.lendingvalue = controls["lendingvalue"].value;
 
@@ -123,7 +131,6 @@ export class CreateLendingComponent implements OnInit {
       let result = data;
       console.log(result);
       if (result) {
-        this.utilService.setLendingToUpdate(null);
         this.showMessageResponse(true,"Prestamo actualizado");
       }
     }, err => {
@@ -137,12 +144,7 @@ export class CreateLendingComponent implements OnInit {
     this.displaymessage = true;
     this.responsemessage = response;
     this.resultOperation = result;
-    setTimeout(() => { this.router.navigate(["/home/lending"]) }, 3000);
-    
-  }
-
-  private closeMessageResponse() {
-    this.displaymessage = false;
+    setTimeout(() => { this.router.navigate(["/home/lending"]); }, 3000);
   }
 
 }

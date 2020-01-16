@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LendingService } from '../../core/services/lending.service';
-import { UtilService } from '../../core/services/util.service';
 import { Lending } from '../../shared/Lending';
-import { Router } from "@angular/router";
+import { Router, NavigationExtras } from "@angular/router";
 
 @Component({
   selector: 'app-lending',
@@ -13,7 +12,7 @@ export class LendingComponent implements OnInit {
 
   lendingsList: Lending[];
 
-  constructor(private utilService: UtilService, private lendingService: LendingService, private router: Router) { }
+  constructor(private lendingService: LendingService, private router: Router) { }
 
   ngOnInit() {
     this.lendingService.getLendings().subscribe(
@@ -32,8 +31,7 @@ export class LendingComponent implements OnInit {
   }
 
   updateLending(lending: Lending) {
-    this.utilService.setLendingToUpdate(lending);
-    this.router.navigate(["/home/lending/create"]);
+    this.router.navigate(["/home/lending/create"], { queryParams: { lendingdata: JSON.stringify(lending) } });
   }
 
 }
