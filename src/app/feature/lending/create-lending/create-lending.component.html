@@ -3,13 +3,13 @@
 </div>
 
 <div class="create-container">
-  <p class="welcome" *ngIf="!navigated">Registrar Prestamo</p>
-  <p class="welcome" *ngIf="navigated">Actualizar Prestamo</p>
+  <p class="welcome" *ngIf="!navigated">{{ "vistas.prestamo.titulo" | translate }}</p>
+  <p class="welcome" *ngIf="navigated">{{ "vistas.prestamo.titulou" | translate }}</p>
   <div class="form">
 
     <form [formGroup]="lendingForm">
       <div class="form-group" *ngIf="!navigated">
-        <label>Cliente</label>
+        <label>{{ "vistas.prestamo.cliente" | translate }}</label>
         <select id="clientid"  class="form-control"  formControlName="clientid" (change)="onClientsChange($event.target.value)">
           <option *ngFor="let client  of clientsList" value="{{client.id}}" >{{client.id}}-{{client.name}}</option>
         </select>
@@ -20,26 +20,26 @@
 
       <div class="form-group">
         <div *ngIf="!navigated">
-          <label>Identificación</label>
+          <label>{{ "vistas.cliente.id" | translate }}</label>
           <input id="clientId" type="text" [(ngModel)]="selectedClient.id" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
         </div> 
-        <label>Nombre</label>
+        <label>{{ "vistas.cliente.nombre" | translate }}</label>
         <input id="clientname" type="text" [(ngModel)]="selectedClient.name" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
-        <label>Teléfono</label>
+        <label>{{ "vistas.cliente.telefono" | translate }}</label>
         <input id="clientphone" type="number" [(ngModel)]="selectedClient.phone" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
-        <label>Dirección</label>
+        <label>{{ "vistas.cliente.direccion" | translate }}</label>
         <input id="clientaddress" type="text" [(ngModel)]="selectedClient.address" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
       </div>
 
       <div class="form-group">
-        <label>Valor préstamo</label>
+        <label>{{ "vistas.prestamo.valor" | translate }}</label>
         <input id="lendingvalue" type="number" class="form-control" formControlName="lendingvalue" />
         <span class="obligatory-span" *ngIf="lendingForm.controls['lendingvalue'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
       <div class="form-group">
-        <label>Fecha de retorno</label>
+        <label>{{ "vistas.prestamo.fechar" | translate }}</label>
         <input id="lendingreturndate" type="date" class="form-control" formControlName="lendingreturndate" />
         <span class="obligatory-span" *ngIf="lendingForm.controls['lendingreturndate'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
@@ -47,8 +47,8 @@
       </div>
 
       <button id="createLendingButton" class="btn btn-primary" (click)="createLending()">
-        <p *ngIf="!navigated" style="margin:0">Registrar</p>
-        <p *ngIf="navigated" style="margin:0">Actualizar</p>
+        <p *ngIf="!navigated" style="margin:0">{{ "vistas.registrar" | translate }}</p>
+        <p *ngIf="navigated" style="margin:0">{{ "vistas.actualizar" | translate }}</p>
       </button>
     </form>
   </div>

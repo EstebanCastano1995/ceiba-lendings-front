@@ -11,26 +11,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID } from "@angular/core";
 
+import { ClientModule } from '../app/feature/client/client.module';
+import { PaymentModule } from '../app/feature/payment/payment.module';
+import { LendingModule } from '../app/feature/lending/lending.module';
+
 //components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './feature/home/home.component';
-import { ClientComponent } from './feature/client/client.component';
-import { PaymentComponent } from './feature/payment/payment.component';
-import { LayoutComponent } from './feature/layout/layout.component';
-import { LendingComponent } from './feature/lending/lending.component';
-import { CreateClientComponent } from './feature/create-client/create-client.component';
-import { CreateLendingComponent } from './feature/create-lending/create-lending.component';
+import { LayoutComponent } from './core/components/layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ClientComponent,
-    PaymentComponent,
-    LayoutComponent,
-    LendingComponent,
-    CreateClientComponent,
-    CreateLendingComponent
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +40,10 @@ import { CreateLendingComponent } from './feature/create-lending/create-lending.
     HttpModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClientModule,
+    PaymentModule,
+    LendingModule
   ],
   exports: [LayoutComponent],
   providers: [

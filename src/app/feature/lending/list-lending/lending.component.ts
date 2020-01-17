@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LendingService } from '../../core/services/lending.service';
-import { Lending } from '../../shared/Lending';
+import { LendingService } from '../../../core/services/lending.service';
+import { Lending } from '../../../shared/Lending';
 import { Router, NavigationExtras } from "@angular/router";
 
 @Component({

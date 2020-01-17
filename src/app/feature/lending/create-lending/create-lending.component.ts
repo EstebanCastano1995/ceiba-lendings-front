@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../../core/services/client.service';
-import { Client } from '../../shared/Client';
-import { Lending } from '../../shared/Lending';
+import { ClientService } from '../../../core/services/client.service';
+import { Client } from '../../../shared/Client';
+import { Lending } from '../../../shared/Lending';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { LendingService } from '../../core/services/lending.service';
+import { LendingService } from '../../../core/services/lending.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -168,7 +168,7 @@ export class CreateLendingComponent implements OnInit {
     this.resultOperation = result;
     setTimeout(() => {
       if (result)
-        this.router.navigate(["/home/lending"]);
+        this.router.navigate(["/home/lending/list"]);
       else
         this.displaymessage = false;
     }, 4000);

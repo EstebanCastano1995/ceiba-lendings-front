@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from '../../core/services/payment.service';
+import { PaymentService } from '../../../core/services/payment.service';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Payment } from '../../shared/Payment';
-import { Lending } from '../../shared/Lending';
-import { LendingService } from '../../core/services/lending.service';
-import { Client } from '../../shared/Client';
+import { Payment } from '../../../shared/Payment';
+import { Lending } from '../../../shared/Lending';
+import { LendingService } from '../../../core/services/lending.service';
+import { Client } from '../../../shared/Client';
 
 @Component({
   selector: 'app-payment',

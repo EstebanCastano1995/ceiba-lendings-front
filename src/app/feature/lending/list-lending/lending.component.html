@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">{{ "vistas.prestamo.id" | translate }}</th>
+      <th scope="col">{{ "vistas.cliente.id" | translate }}</th>
+      <th scope="col">{{ "vistas.cliente.nombre" | translate }}</th>
+      <th scope="col">{{ "vistas.prestamo.fechap" | translate }}</th>
+      <th scope="col">{{ "vistas.prestamo.fechar" | translate }}</th>
+      <th scope="col">{{ "vistas.prestamo.valor" | translate }}</th>
+      <th scope="col">{{ "vistas.prestamo.valorr" | translate }}</th>
+      <th scope="col">{{ "vistas.acciones" | translate }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lending  of lendingsList">
+      <td>{{ lending.id }}</td>
+      <td>{{ lending.clientid.id }}</td>
+      <td>{{ lending.clientid.name }}</td>
+      <td>{{ lending.lendingdate }}</td>
+      <td>{{ lending.lendingreturndate }}</td>
+      <td>{{ lending.lendingvalue }}</td>
+      <td>{{ lending.lendingtotalamount }}</td>
+      <td>
+        <button class="btn btn-primary" id="btnUpdate" (click)="updateLending(lending)">{{ "vistas.actualizar" | translate }}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

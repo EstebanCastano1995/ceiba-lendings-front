@@ -5,12 +5,12 @@
 <table class="table table-striped" style="width:100%;">
   <thead>
     <tr>
-      <th scope="col">Identificación</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Fecha de nacimiento</th>
-      <th scope="col">Dirección</th>
-      <th scope="col">Teléfono</th>
-      <th scope="col">Acciones</th>
+      <th scope="col">{{ "vistas.cliente.id" | translate }}</th>
+      <th scope="col">{{ "vistas.cliente.nombre" | translate }}</th>
+      <th scope="col">{{ "vistas.cliente.fechanto" | translate }}</th>
+      <th scope="col">{{ "vistas.cliente.direccion" | translate }}</th>
+      <th scope="col">{{ "vistas.cliente.telefono" | translate }}</th>
+      <th scope="col">{{ "vistas.acciones" | translate }}</th>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +21,7 @@
       <td>{{ cliente.address }}</td>
       <td>{{ cliente.phone }}</td>
       <td>
-        <button class="btn btn-danger" id="btnEliminar" (click)="deleteClient(cliente)">Eliminar</button>
+        <button class="btn btn-danger" id="btnEliminar" (click)="deleteClient(cliente)">{{ "vistas.eliminar" | translate }}</button>
       </td>
     </tr>
   </tbody>
