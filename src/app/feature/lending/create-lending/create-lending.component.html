@@ -11,7 +11,7 @@
       <div class="form-group" *ngIf="!navigated">
         <label>{{ "vistas.prestamo.cliente" | translate }}</label>
         <select id="clientid"  class="form-control"  formControlName="clientid" (change)="onClientsChange($event.target.value)">
-          <option *ngFor="let client  of clientsList" value="{{client.id}}" >{{client.id}}-{{client.name}}</option>
+          <option id="{{client.id}}-{{client.name}}" *ngFor="let client  of clientsList" value="{{client.id}}">{{client.id}}-{{client.name}}</option>
         </select>
         <span class="obligatory-span" *ngIf="lendingForm.controls['clientid'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>

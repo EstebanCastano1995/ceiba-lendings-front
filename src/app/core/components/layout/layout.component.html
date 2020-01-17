@@ -24,36 +24,36 @@
           <span>{{ "menu.inicio" | translate }}</span>
         </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+      <li id="nav-client" class="nav-item dropdown">
+        <a  class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user" style="margin:10px;"></i>
           <span>{{ "menu.clientes" | translate }}</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" routerLink="/home/client/list" routerLinkActive="active">{{ "menu.listarclientes" | translate }}</a>
-          <a class="dropdown-item" routerLink="/home/client/create" routerLinkActive="active">{{ "menu.crearcliente" | translate }}</a>
+          <a id="nav-client-list" class="dropdown-item" routerLink="/home/client/list" routerLinkActive="active">{{ "menu.listarclientes" | translate }}</a>
+          <a id="nav-client-create" class="dropdown-item" routerLink="/home/client/create" routerLinkActive="active">{{ "menu.crearcliente" | translate }}</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li id="nav-lending" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-money-check" style="margin:10px;"></i>
           <span>{{ "menu.prestamos" | translate }}</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" routerLink="/home/lending/list" routerLinkActive="active">{{ "menu.listarprestamos" | translate }}</a>
-          <a class="dropdown-item" routerLink="/home/lending/create" routerLinkActive="active">{{ "menu.crearprestamo" | translate }}</a>
+          <a id="nav-lending-list" class="dropdown-item" routerLink="/home/lending/list" routerLinkActive="active">{{ "menu.listarprestamos" | translate }}</a>
+          <a id="nav-lending-create" class="dropdown-item" routerLink="/home/lending/create" routerLinkActive="active">{{ "menu.crearprestamo" | translate }}</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li id="nav-payment" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-chart-area" style="margin:10px;"></i>
           <span>{{ "menu.pagos" | translate }}</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" routerLink="/home/payment/create" routerLinkActive="active">{{ "menu.crearpago" | translate }}</a>
+          <a id="nav-payment-create" class="dropdown-item" routerLink="/home/payment/create" routerLinkActive="active">{{ "menu.crearpago" | translate }}</a>
 
         </div>
       </li>
