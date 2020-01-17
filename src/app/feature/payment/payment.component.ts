@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Payment } from '../../shared/Payment';
 import { Lending } from '../../shared/Lending';
 import { LendingService } from '../../core/services/lending.service';
+import { Client } from '../../shared/Client';
 
 @Component({
   selector: 'app-payment',
@@ -22,13 +23,17 @@ export class PaymentComponent implements OnInit {
 
   resultOperation: Boolean;
 
+  selectedLending: Lending;
+
 
   constructor(private paymentService: PaymentService, private lendingsService: LendingService) { }
 
   ngOnInit() {
+    this.selectedLending = new Lending();
+    this.selectedLending.clientid = new Client();
     this.paymentForm = new FormGroup({
-      lendingid: new FormControl("lendingid", [Validators.required]),
-      paymentvalue: new FormControl("paymentvalue", [Validators.required])
+      lendingid: new FormControl(null, [Validators.required]),
+      paymentvalue: new FormControl(null, [Validators.required])
     });
 
     this.lendingsService.getLendings().subscribe(
@@ -51,9 +56,10 @@ export class PaymentComponent implements OnInit {
   createPayment() {
     let controls = this.paymentForm.controls;
     if (this.paymentForm.invalid) {
-      Object.keys(controls).forEach(controlName =>
-        controls[controlName].markAsTouched()
-      );
+      Object.keys(controls).forEach(controlName => {
+        if (this.paymentForm[controlName].invalid)
+          controls[controlName].setValue(null);
+      });
       return;
     }
 
@@ -71,7 +77,6 @@ export class PaymentComponent implements OnInit {
 
     this.paymentService.createPayment(payment).subscribe(data => {
       let result = data;
-      console.log(result);
       if (result) {
         console.log(result);
         this.showMessageResponse(true, "Se ha registrado el pago");
@@ -87,6 +92,14 @@ export class PaymentComponent implements OnInit {
     this.responsemessage = response;
     this.resultOperation = result;
     setTimeout(() => { this.displaymessage = false; }, 4000);
+  }
+
+  private onLendingChange(lendingId: number) {
+    this.lendingsList.forEach(lending => {
+      if (lending.id == lendingId) {
+        this.selectedLending = lending;
+      }
+    });
   }
 
 }

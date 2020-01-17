@@ -21,11 +21,15 @@ export class LendingService {
   }
 
   public createLending(lending: Lending) {
+    console.log("CREATING LENDING");
+    console.log(lending);
     let response = this.http.post(this.api_url, JSON.stringify(lending), this.options);
     return response;
   }
 
   public updateLending(lending: Lending) {
+    console.log("UPDATING LENDING");
+    console.log(lending);
     let response = this.http.post(this.api_url + "/update", JSON.stringify(lending), this.options);
     return response;
   }

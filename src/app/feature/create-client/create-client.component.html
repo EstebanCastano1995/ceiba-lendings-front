@@ -36,8 +36,8 @@
       </div>
       <div class="form-group">
         <label>Dirección</label>
-        <input id="address" type="text" class="form-control" formControlName="address" />
-        <span *ngIf="clientForm.controls['address'].hasError('required')">
+        <input id="address" type="text" class="form-control" formControlName="address_a" />
+        <span *ngIf="clientForm.controls['address_a'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>

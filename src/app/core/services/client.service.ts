@@ -21,6 +21,8 @@ export class ClientService {
   }
 
   public createClient(client: Client) {
+    console.log("CREATING CLIENT");
+    console.log(client);
     let response = this.http.post(this.api_url, JSON.stringify(client), this.options);
     return response;
   }

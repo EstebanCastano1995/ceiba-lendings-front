@@ -8,13 +8,28 @@
     <form [formGroup]="paymentForm">
       <div class="form-group">
         <label>Prestamo</label>
-        <select id="lendingid" class="form-control" formControlName="lendingid">
+        <select id="lendingid" class="form-control" formControlName="lendingid" (change)="onLendingChange($event.target.value)">
           <option value=""></option>
           <option *ngFor="let lending  of lendingsList" value="{{lending.id}}">{{lending.id}}-{{lending.clientid.id}}-{{lending.clientid.name}}</option>
         </select>
         <span *ngIf="paymentForm.controls['lendingid'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
+      </div>
+
+      <div class="form-group">
+        <label>Identificación</label>
+        <input id="clientId" type="text" [(ngModel)]="selectedLending.clientid.id" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        <label>Nombre</label>
+        <input id="clientname" type="text" [(ngModel)]="selectedLending.clientid.name" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        <label>Télefono</label>
+        <input id="clientphone" type="number" [(ngModel)]="selectedLending.clientid.phone" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        <label>Dirección</label>
+        <input id="clientaddress" type="text" [(ngModel)]="selectedLending.clientid.address" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        <label>Valor préstamo</label>
+        <input id="lendingvalue" type="number" [(ngModel)]="selectedLending.lendingvalue" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        <label>Fecha préstamo</label>
+        <input id="lendingdate" type="date" [(ngModel)]="selectedLending.lendingdate" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
       </div>
 
       <div class="form-group">

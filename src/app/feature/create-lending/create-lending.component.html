@@ -3,18 +3,34 @@
 </div>
 
 <div class="create-container">
-  <p class="welcome">Registrar Prestamo</p>
+  <p class="welcome" *ngIf="!navigated">Registrar Prestamo</p>
+  <p class="welcome" *ngIf="navigated">Actualizar Prestamo</p>
   <div class="form">
+
     <form [formGroup]="lendingForm">
       <div class="form-group" *ngIf="!navigated">
         <label>Cliente</label>
-        <select id="clientid" class="form-control" formControlName="clientid">
-          <option *ngFor="let client  of clientsList" value="{{client.id}}">{{client.id}}-{{client.name}}</option>
+        <select id="clientid"  class="form-control"  formControlName="clientid" (change)="onClientsChange($event.target.value)">
+          <option *ngFor="let client  of clientsList" value="{{client.id}}" >{{client.id}}-{{client.name}}</option>
         </select>
         <span *ngIf="lendingForm.controls['clientid'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
+
+      <div class="form-group">
+        <div *ngIf="!navigated">
+          <label>Identificación</label>
+          <input id="clientId" type="text" [(ngModel)]="selectedClient.id" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        </div> 
+        <label>Nombre</label>
+        <input id="clientname" type="text" [(ngModel)]="selectedClient.name" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        <label>Télefono</label>
+        <input id="clientphone" type="number" [(ngModel)]="selectedClient.phone" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+        <label>Dirección</label>
+        <input id="clientaddress" type="text" [(ngModel)]="selectedClient.address" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
+      </div>
+
       <div class="form-group">
         <label>Valor prestamo</label>
         <input id="lendingvalue" type="number" class="form-control" formControlName="lendingvalue" />
@@ -29,10 +45,15 @@
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
-      
+
       <button id="createLendingButton" class="btn btn-primary" (click)="createLending()">
-        Registrar
+        <p *ngIf="!navigated" style="margin:0">Registrar</p>
+        <p *ngIf="navigated" style="margin:0">Actualizar</p>
       </button>
     </form>
   </div>
 </div>
+
+
+
+

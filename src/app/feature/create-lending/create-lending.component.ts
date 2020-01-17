@@ -6,7 +6,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { LendingService } from '../../core/services/lending.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
-
 @Component({
   selector: 'app-create-lending',
   templateUrl: './create-lending.component.html',
@@ -26,43 +25,25 @@ export class CreateLendingComponent implements OnInit {
 
   resultOperation: Boolean;
 
+  dataLending: any;
+
+  selectedClient: Client;
+
   constructor(private clientService: ClientService,
     private lendingService: LendingService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.navigated = false;
+    this.selectedClient = new Client();
 
     this.lendingForm = new FormGroup({
-      clientid: new FormControl("clientid", [Validators.required]),
-      lendingvalue: new FormControl("lendingvalue", [Validators.required]),
-      lendingreturndate: new FormControl("lendingreturndate", [Validators.required])
+      clientid: new FormControl(null, [Validators.required]),
+      lendingvalue: new FormControl(null, [Validators.required]),
+      lendingreturndate: new FormControl(null, [Validators.required]),
     });
 
-    this.activatedRoute.queryParams.subscribe(
-      params => {
-        let data = null;
-        if (params['lendingdata'])
-          data = JSON.parse(params['lendingdata']);
-        else 
-          this.navigated = false;
+    this.checkParams();
 
-        if (data != null && data != undefined && data.id) {
-          this.navigated = true;
-          this.lendingForm.controls['lendingvalue'].setValue(data.lendingvalue);
-          this.lendingForm.controls['lendingreturndate'].setValue(data.lendingreturndate);
-          this.lendingForm.controls['clientid'].setValue(data.clientid);
-          this.clientsList = [];
-          this.clientsList.push(data.clientid);
-        }
-        else {
-          this.navigated = false;
-        }
-      }
-    )
-   
-
-    if (!this.navigated) {
       this.clientService.getClients().subscribe(
         response => {
           let result = response.json();
@@ -74,58 +55,59 @@ export class CreateLendingComponent implements OnInit {
         },
         err => {
           console.log(err);
+          this.showMessageResponse(false, JSON.parse(err._body).message);
         }
       );
-    }
+    
   }
 
   createLending() {
 
     let controls = this.lendingForm.controls;
     if (this.lendingForm.invalid) {
-      Object.keys(controls).forEach(controlName =>
-        controls[controlName].markAsTouched()
-      );
+      Object.keys(controls).forEach(controlName => {
+        if (controls[controlName].invalid)
+          controls[controlName].setValue(null);
+      });
       return;
     }
 
     if (this.navigated) {
       this.updateLending();
     }
+    else {
 
-    let lending = new Lending();
-    lending.clientid = new Client();
-    lending.clientid.id = controls["clientid"].value;
-    lending.lendingreturndate = controls["lendingreturndate"].value;
-    lending.lendingvalue = controls["lendingvalue"].value;
-    lending.lendingdate = new Date();
-    
+      let lending = new Lending();
+      lending.clientid = new Client();
+      lending.clientid.id = controls["clientid"].value;
+      lending.lendingreturndate = this.convertDate(controls["lendingreturndate"].value);
+      lending.lendingvalue = controls["lendingvalue"].value;
+      lending.lendingdate = new Date();
 
-    this.clientsList.forEach(client => {
-      if (client.id == lending.clientid.id) {
-        lending.clientid = client;
-      }
-    });
+      lending=this.assignClient(lending);
 
-    this.lendingService.createLending(lending).subscribe(data => {
-      let result = data;
-      console.log(result);
-      if (result) {
-        console.log(result);
-        this.showMessageResponse(true, "Préstamo creado");
-      }
-    }, err => {
+      this.lendingService.createLending(lending).subscribe(data => {
+        let result = data;
+        if (result) {
+          console.log(result);
+          this.showMessageResponse(true, "Préstamo creado");
+        }
+      }, err => {
         console.log(err);
         this.showMessageResponse(false, JSON.parse(err._body).message);
-    });
-
+      });
+    }
   }
 
   updateLending() {
     let controls = this.lendingForm.controls;
     let lending = new Lending();
-    lending.lendingreturndate = controls["lendingreturndate"].value;
+    lending.lendingreturndate = this.convertDate(controls["lendingreturndate"].value);
     lending.lendingvalue = controls["lendingvalue"].value;
+    lending.clientid = controls["clientid"].value;
+
+    lending.lendingdate = this.dataLending.lendingdate;
+    lending.id = this.dataLending.id;
 
     this.lendingService.updateLending(lending).subscribe(data => {
       let result = data;
@@ -139,12 +121,74 @@ export class CreateLendingComponent implements OnInit {
     });
   }
 
+  private checkParams() {
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        let data = null;
+        if (params['lendingdata']) {
+          this.navigated = true;
+          data = JSON.parse(params['lendingdata']);
+        }
+        else
+          this.navigated = false;
+
+        if (this.navigated) {
+          this.navigated = true;
+          this.lendingForm.controls['lendingvalue'].setValue(data.lendingvalue);
+          this.lendingForm.controls['lendingreturndate'].setValue(data.lendingreturndate);
+          this.lendingForm.controls['clientid'].setValue(data.clientid);
+          this.dataLending = {};
+          this.dataLending.id = data.id;
+          this.dataLending.lendingdate = data.lendingdate;
+          this.selectedClient = data.clientid;
+
+        } else {
+          this.selectedClient = new Client();
+          this.lendingForm.controls['lendingvalue'].setValue(null);
+          this.lendingForm.controls['lendingreturndate'].setValue(null);
+          this.lendingForm.controls['clientid'].setValue(null);
+        }
+      }
+    )
+  }
+
+  private assignClient(lending: Lending): Lending {
+    this.clientsList.forEach(client => {
+      if (client.id == lending.clientid.id) {
+        lending.clientid = client;
+      }
+    });
+    return lending;
+  }
+
 
   private showMessageResponse(result: boolean, response: string) {
     this.displaymessage = true;
     this.responsemessage = response;
     this.resultOperation = result;
-    setTimeout(() => { this.router.navigate(["/home/lending"]); }, 3000);
+    setTimeout(() => {
+      if (result)
+        this.router.navigate(["/home/lending"]);
+      else
+        this.displaymessage = false;
+    }, 4000);
+  }
+
+  private onClientsChange(idClient:number) {
+    this.clientsList.forEach(client => {
+      if (client.id == idClient) {
+        this.selectedClient = client;
+      }
+    });
+  }
+
+  private convertDate(dateS: String): Date {
+    let dateArray = dateS.split("-");
+    let year = parseInt(dateArray[0]);
+    let month = parseInt(dateArray[1], 10) - 1;
+    var day = parseInt(dateArray[2]);
+    var _entryDate = new Date(year, month, day);
+    return _entryDate;
   }
 
 }

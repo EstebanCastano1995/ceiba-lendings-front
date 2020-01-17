@@ -3,8 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\assets",
-    "\\src\\environments"
+    "\\src\\app\\core",
+    "\\src\\app\\core\\services",
+    "\\src\\app\\feature",
+    "\\src\\app\\feature\\create-client",
+    "\\src\\app\\feature\\create-lending",
+    "\\src\\app\\feature\\lending",
+    "\\src\\app\\feature\\payment"
   ],
+  "SelectedNode": "\\src\\app\\app-routing.module.ts",
   "PreviewInSolutionExplorer": false
 }

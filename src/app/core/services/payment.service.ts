@@ -21,6 +21,8 @@ export class PaymentService {
   }
 
   public createPayment(payment: Payment) {
+    console.log("CREATING PAYMENT");
+    console.log(payment);
     let response = this.http.post(this.api_url, JSON.stringify(payment), this.options);
     return response;
   }
