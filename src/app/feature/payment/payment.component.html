@@ -12,7 +12,7 @@
           <option value=""></option>
           <option *ngFor="let lending  of lendingsList" value="{{lending.id}}">{{lending.id}}-{{lending.clientid.id}}-{{lending.clientid.name}}</option>
         </select>
-        <span *ngIf="paymentForm.controls['lendingid'].hasError('required')">
+        <span class="obligatory-span" *ngIf="paymentForm.controls['lendingid'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
@@ -22,7 +22,7 @@
         <input id="clientId" type="text" [(ngModel)]="selectedLending.clientid.id" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
         <label>Nombre</label>
         <input id="clientname" type="text" [(ngModel)]="selectedLending.clientid.name" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
-        <label>Télefono</label>
+        <label>Teléfono</label>
         <input id="clientphone" type="number" [(ngModel)]="selectedLending.clientid.phone" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
         <label>Dirección</label>
         <input id="clientaddress" type="text" [(ngModel)]="selectedLending.clientid.address" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
@@ -35,7 +35,7 @@
       <div class="form-group">
         <label>Valor</label>
         <input id="paymentvalue" type="number" class="form-control" formControlName="paymentvalue" />
-        <span *ngIf="paymentForm.controls['paymentvalue'].hasError('required')">
+        <span class="obligatory-span" *ngIf="paymentForm.controls['paymentvalue'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>

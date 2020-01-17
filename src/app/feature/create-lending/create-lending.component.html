@@ -13,7 +13,7 @@
         <select id="clientid"  class="form-control"  formControlName="clientid" (change)="onClientsChange($event.target.value)">
           <option *ngFor="let client  of clientsList" value="{{client.id}}" >{{client.id}}-{{client.name}}</option>
         </select>
-        <span *ngIf="lendingForm.controls['clientid'].hasError('required')">
+        <span class="obligatory-span" *ngIf="lendingForm.controls['clientid'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
@@ -25,23 +25,23 @@
         </div> 
         <label>Nombre</label>
         <input id="clientname" type="text" [(ngModel)]="selectedClient.name" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
-        <label>Télefono</label>
+        <label>Teléfono</label>
         <input id="clientphone" type="number" [(ngModel)]="selectedClient.phone" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
         <label>Dirección</label>
         <input id="clientaddress" type="text" [(ngModel)]="selectedClient.address" class="form-control" disabled [ngModelOptions]="{standalone: true}" />
       </div>
 
       <div class="form-group">
-        <label>Valor prestamo</label>
+        <label>Valor préstamo</label>
         <input id="lendingvalue" type="number" class="form-control" formControlName="lendingvalue" />
-        <span *ngIf="lendingForm.controls['lendingvalue'].hasError('required')">
+        <span class="obligatory-span" *ngIf="lendingForm.controls['lendingvalue'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
       <div class="form-group">
         <label>Fecha de retorno</label>
         <input id="lendingreturndate" type="date" class="form-control" formControlName="lendingreturndate" />
-        <span *ngIf="lendingForm.controls['lendingreturndate'].hasError('required')">
+        <span class="obligatory-span" *ngIf="lendingForm.controls['lendingreturndate'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
