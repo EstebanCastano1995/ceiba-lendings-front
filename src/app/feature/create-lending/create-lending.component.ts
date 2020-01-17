@@ -106,7 +106,7 @@ export class CreateLendingComponent implements OnInit {
     lending.lendingvalue = controls["lendingvalue"].value;
     lending.clientid = controls["clientid"].value;
 
-    lending.lendingdate = this.dataLending.lendingdate;
+    lending.lendingdate = this.convertDate(this.dataLending.lendingdate);
     lending.id = this.dataLending.id;
 
     this.lendingService.updateLending(lending).subscribe(data => {
