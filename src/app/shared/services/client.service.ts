@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from "@angular/http";
-import { Client } from '../../shared/Client';
-import { environment} from '../../../environments/environment';
+import { Client } from '../../shared/entities/Client';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class ClientService {
   }
 
   public deleteClient(client: Client) {
-    let response = this.http.post(this.api_url + "/delete", JSON.stringify(client), this.options);
+    let response = this.http.delete(this.api_url + "/" + client.id);
     return response;
   }
 

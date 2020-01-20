@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../../../core/services/client.service';
-import { Client } from '../../../shared/Client';
+import { ClientService } from '../../../shared/services/client.service';
+import { Client } from '../../../shared/entities/Client';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-client',
@@ -17,7 +18,7 @@ export class ClientComponent implements OnInit {
 
   resultOperation: Boolean;
 
-  constructor(private clientService: ClientService) { }
+  constructor(private translate: TranslateService,private clientService: ClientService) { }
 
   ngOnInit() {
     this.getClients();
@@ -27,10 +28,10 @@ export class ClientComponent implements OnInit {
     this.clientService.deleteClient(cliente).subscribe(
       response => {
         if (response) {
-          this.showMessageResponse(true, "Cliente eliminado");
+          this.showMessageResponse(true, this.translate.instant('alerts.delete.cliente'));
           this.getClients();
         } else {
-          this.showMessageResponse(false, "Errror deleteting client");
+          this.showMessageResponse(false, this.translate.instant('alerts.delete.cliente.fail'));
         }
       },
       err => {
@@ -47,8 +48,7 @@ export class ClientComponent implements OnInit {
         if (result) {
           this.clientsList = result;
         } else {
-          console.log('error');
-          this.showMessageResponse(false, "Errror getting clients");
+          this.showMessageResponse(false, this.translate.instant('alerts.get.cliente'));
         }
       },
       err => {

@@ -46,7 +46,7 @@
         </span>
       </div>
 
-      <button id="createLendingButton" class="btn btn-primary" (click)="createLending()">
+      <button [disabled]="!lendingForm.valid" id="createLendingButton" class="btn btn-primary" (click)="createLending()">
         <p *ngIf="!navigated" style="margin:0">{{ "vistas.registrar" | translate }}</p>
         <p *ngIf="navigated" style="margin:0">{{ "vistas.actualizar" | translate }}</p>
       </button>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from "@angular/http";
 import { environment } from '../../../environments/environment';
-import { Lending } from '../../shared/Lending';
+import { Lending } from '../../shared/entities/Lending';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class LendingService {
   public updateLending(lending: Lending) {
     console.log("UPDATING LENDING");
     console.log(lending);
-    let response = this.http.post(this.api_url + "/update", JSON.stringify(lending), this.options);
+    let response = this.http.put(this.api_url + "/" + lending.id, JSON.stringify(lending), this.options);
     return response;
   }
 

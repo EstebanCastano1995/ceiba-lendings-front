@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { ClientService } from '../../../core/services/client.service';
-import { Client } from '../../../shared/Client';
+import { ClientService } from '../../../shared/services/client.service';
+import { Client } from '../../../shared/entities/Client';
+import { Router } from "@angular/router";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-client',
@@ -18,7 +20,7 @@ export class CreateClientComponent implements OnInit {
 
   resultOperation: Boolean;
 
-  constructor(private clientService: ClientService) { }
+  constructor(private translate: TranslateService,private clientService: ClientService, private router: Router) { }
 
   ngOnInit() {
     this.clientForm = new FormGroup({
@@ -53,7 +55,7 @@ export class CreateClientComponent implements OnInit {
       let result = data;
       if (result) {
         console.log(result);
-        this.showMessageResponse(true, "Cliente creado");
+        this.showMessageResponse(true, this.translate.instant('alerts.create.cliente'));
       }
     }, err => {
       console.log(err);
@@ -65,7 +67,7 @@ export class CreateClientComponent implements OnInit {
     this.displaymessage = true;
     this.responsemessage = response;
     this.resultOperation = result;
-    setTimeout(() => { this.displaymessage = false; }, 4000);
+    setTimeout(() => { this.router.navigate(["/home/client/list"]);}, 4000);
   }
 
   private convertDate(dateS:String):Date {

@@ -40,7 +40,7 @@
         </span>
       </div>
 
-      <button id="createPaymentButton" class="btn btn-primary" (click)="createPayment()">
+      <button [disabled]="!paymentForm.valid" id="createPaymentButton" class="btn btn-primary" (click)="createPayment()">
         {{ "vistas.registrar" | translate }}
       </button>
     </form>

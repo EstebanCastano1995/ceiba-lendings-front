@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../../../core/services/client.service';
-import { Client } from '../../../shared/Client';
-import { Lending } from '../../../shared/Lending';
+import { ClientService } from '../../../shared/services/client.service';
+import { Client } from '../../../shared/entities/Client';
+import { Lending } from '../../../shared/entities/Lending';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { LendingService } from '../../../core/services/lending.service';
+import { LendingService } from '../../../shared/services/lending.service';
 import { Router, ActivatedRoute } from "@angular/router";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-lending',
@@ -29,7 +30,7 @@ export class CreateLendingComponent implements OnInit {
 
   selectedClient: Client;
 
-  constructor(private clientService: ClientService,
+  constructor(private translate: TranslateService, private clientService: ClientService,
     private lendingService: LendingService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -50,7 +51,7 @@ export class CreateLendingComponent implements OnInit {
           if (result) {
             this.clientsList = result;
           } else {
-            console.log('error');
+            this.showMessageResponse(false, this.translate.instant('alerts.get.cliente'));
           }
         },
         err => {
@@ -90,7 +91,7 @@ export class CreateLendingComponent implements OnInit {
         let result = data;
         if (result) {
           console.log(result);
-          this.showMessageResponse(true, "Préstamo creado");
+          this.showMessageResponse(true, this.translate.instant('alerts.create.prestamo'));
         }
       }, err => {
         console.log(err);
@@ -113,7 +114,7 @@ export class CreateLendingComponent implements OnInit {
       let result = data;
       console.log(result);
       if (result) {
-        this.showMessageResponse(true,"Prestamo actualizado");
+        this.showMessageResponse(true, this.translate.instant('alerts.update.prestamo'));
       }
     }, err => {
         console.log(err);

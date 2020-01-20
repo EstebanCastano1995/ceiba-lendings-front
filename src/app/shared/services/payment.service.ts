@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from "@angular/http";
 import { environment } from '../../../environments/environment';
-import { Payment } from '../../shared/Payment';
+import { Payment } from '../../shared/entities/Payment';
 
 @Injectable({
   providedIn: 'root'

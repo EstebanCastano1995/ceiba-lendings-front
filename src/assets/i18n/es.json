@@ -46,8 +46,13 @@
   },
 
   "alerts": {
-    "congratulations": "Felicitaciones!",
-    "confirm": "Confirmar",
-    "error": "Error"
+    "get.cliente": "Ha ocurrido un error obteniendo los clientes",
+    "get.prestamo": "Ha ocurrido un error obteniendo los préstamos",
+    "create.cliente": "Se ha creado el cliente existosamente",
+    "create.prestamo": "Se ha creado el préstamo exitosamente",
+    "create.pago": "Se ha creado el pago exitosamente",
+    "update.prestamo": "Se ha actualizado el préstamo exitosamente",
+    "delete.cliente": "Se ha eliminado el cliente exitosamente",
+    "delete.cliente.fail": "Ha ocurrido un error eliminando el cliente"
   }
 }
