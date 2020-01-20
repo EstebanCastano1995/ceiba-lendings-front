@@ -22,7 +22,7 @@
         <td>{{ cliente.address }}</td>
         <td>{{ cliente.phone }}</td>
         <td>
-          <button class="btn btn-danger" id="btnEliminar" (click)="deleteClient(cliente)">{{ "vistas.eliminar" | translate }}</button>
+          <button class="btn btn-danger" id="btnEliminar-{{cliente.id}}" (click)="deleteClient(cliente)">{{ "vistas.eliminar" | translate }}</button>
         </td>
       </tr>
     </tbody>

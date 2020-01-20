@@ -14,6 +14,7 @@ module.exports = {
       addAddress: element(by.id('address')),
 
       buttonSaveClient: element(by.id('createClientButton')),
+      buttonDeleteClient: element(by.id('btnEliminar-1102')),
     },  
   
     go: function(route) {  
@@ -25,8 +26,8 @@ module.exports = {
       this.elements.addIdentification.sendKeys(value);  
      },
 
-  addName: function (value) {
-    this.elements.addName.sendKeys(value);
+     addName: function (value) {
+      this.elements.addName.sendKeys(value);
      },
 
     addBirthDate: function (value) {
@@ -55,5 +56,9 @@ module.exports = {
 
   goClientList: function () {
     this.elements.buttonclientlist.click();
+  },
+
+  deleteClient: function () {
+    this.elements.buttonDeleteClient.click();
   },
 };

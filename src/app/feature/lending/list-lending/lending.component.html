@@ -22,7 +22,7 @@
         <td>{{ lending.lendingvalue }}</td>
         <td>{{ lending.lendingtotalamount }}</td>
         <td>
-          <button class="btn btn-primary" id="btnUpdate" (click)="updateLending(lending)">{{ "vistas.actualizar" | translate }}</button>
+          <button class="btn btn-primary" id="btnUpdate-{{lending.id}}" (click)="updateLending(lending)">{{ "vistas.actualizar" | translate }}</button>
         </td>
       </tr>
     </tbody>

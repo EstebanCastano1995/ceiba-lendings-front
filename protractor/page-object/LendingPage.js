@@ -11,6 +11,7 @@ module.exports = {
     lendingValue: element(by.id('lendingvalue')),
     lendingReturnDate: element(by.id('lendingreturndate')),
     createlendingbutton: element(by.id('createLendingButton')),
+    updatelendingbutton: element(by.id('btnUpdate'))
   },
 
   go: function (route) {
@@ -50,4 +51,7 @@ module.exports = {
     this.elements.createlendingbutton.click();
   },
 
+  goToUpdateLending: function () {
+    this.elements.updatelendingbutton.click();
+  },
 };
