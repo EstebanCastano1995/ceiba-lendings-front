@@ -2,15 +2,18 @@
   
 module.exports = {
 
-    elements: {
+  elements: {
+      buttonclient: element(by.id('nav-client')),
+      buttonclientcreate: element(by.id('nav-client-create')),
+      buttonclientlist: element(by.id('nav-client-list')),
+
       addIdentification: element(by.id('identification')),
       addName: element(by.id('name')),
       addBirthDate: element(by.id('birthdate')),
       addPhone: element(by.id('phone')),
       addAddress: element(by.id('address')),
-      buttonclient: element(by.id('nav-client')),
-      buttonclientcreate: element(by.id('nav-client-create')),
-      buttonclientlist: element(by.id('nav-client-list'))
+
+      buttonSaveClient: element(by.id('createClientButton')),
     },  
   
     go: function(route) {  
@@ -19,46 +22,38 @@ module.exports = {
     },  
       
     addIdentification: function (value) {
-      var todo = this.elements;
-      todo.addIdentification.sendKeys(value);  
-  },
+      this.elements.addIdentification.sendKeys(value);  
+     },
 
-    addName: function (value) {
-      var todo = this.elements;
-      todo.addName.sendKeys(value);
-  },
+  addName: function (value) {
+    this.elements.addName.sendKeys(value);
+     },
 
     addBirthDate: function (value) {
-      var todo = this.elements;
-      todo.addBirthDate.sendKeys(value);
-  },
+     this.elements.addBirthDate.sendKeys(value);
+    },
 
     addPhone: function (value) {
-    var todo = this.elements;
-    todo.addPhone.sendKeys(value);
-  },
+     this.elements.addPhone.sendKeys(value);
+    },
 
     addAddress: function (value) {
-    var todo = this.elements;
-    todo.addAddress.sendKeys(value);
-  },
-  addAddress: function (value) {
-    var todo = this.elements;
-    todo.addAddress.sendKeys(value);
-  },
+     this.elements.addAddress.sendKeys(value);
+    },
 
-  goClient: function () {
-    var todo = this.elements;
-    todo.buttonclient.click();
-  },
+    saveClient: function () {
+     this.elements.buttonSaveClient.click();
+   },
 
-  goClientCreate: function () {
-    var todo = this.elements;
-    todo.buttonclientcreate.click();
-  },
+   goClient: function () {
+    this.elements.buttonclient.click();
+   },
+
+   goClientCreate: function () {
+    this.elements.buttonclientcreate.click();
+   },
 
   goClientList: function () {
-    var todo = this.elements;
-    todo.buttonclientlist.click();
+    this.elements.buttonclientlist.click();
   },
 };

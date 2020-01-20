@@ -41,7 +41,7 @@
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
-      <button [disabled]="!clientForm.valid" id="createClientButton" class="btn btn-primary" (click)="createClient()">
+      <button id="createClientButton" [disabled]="!clientForm.valid"  class="btn btn-primary" (click)="createClient()">
         {{ "vistas.registrar" | translate }}
       </button>      
     </form>

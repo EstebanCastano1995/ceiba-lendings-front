@@ -6,6 +6,7 @@ import { Lending } from '../../../shared/entities/Lending';
 import { LendingService } from '../../../shared/services/lending.service';
 import { Client } from '../../../shared/entities/Client';
 import { TranslateService } from '@ngx-translate/core';
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-payment',
@@ -27,7 +28,7 @@ export class PaymentComponent implements OnInit {
   selectedLending: Lending;
 
 
-  constructor(private translate: TranslateService, private paymentService: PaymentService, private lendingsService: LendingService) { }
+  constructor(private router: Router,private translate: TranslateService, private paymentService: PaymentService, private lendingsService: LendingService) { }
 
   ngOnInit() {
     this.selectedLending = new Lending();
@@ -92,7 +93,7 @@ export class PaymentComponent implements OnInit {
     this.displaymessage = true;
     this.responsemessage = response;
     this.resultOperation = result;
-    setTimeout(() => { this.displaymessage = false; }, 4000);
+    setTimeout(() => { this.router.navigate(["/home/lending/list"]); }, 4000);
   }
 
   private onLendingChange(lendingId: number) {

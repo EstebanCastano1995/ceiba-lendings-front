@@ -4,7 +4,11 @@ module.exports = {
 
   elements: {
     buttonpayment: element(by.id('nav-payment')),
-    buttonpaymentcreate: element(by.id('nav-payment-create'))
+    buttonpaymentcreate: element(by.id('nav-payment-create')),
+    clicklendings: element(by.tagName("select#lendingid")),
+    selectlending: element(by.css("#lendingid [value='1']")),
+    addPaymentValue: element(by.id('paymentvalue')),
+    createPaymentButton:element(by.id('createPaymentButton')),
   },
 
   go: function (route) {
@@ -12,13 +16,27 @@ module.exports = {
     browser.waitForAngular();
   },
 
-  goPaymentCreate: function () {
-    var todo = this.elements;
-    todo.buttonpaymentcreate.click();
+  addPaymentValue: function (value) {
+    this.elements.addPaymentValue.sendKeys(value);
   },
 
   goPayment: function () {
-    var todo = this.elements;
-    todo.buttonpayment.click();
+    this.elements.buttonpayment.click();
+  },
+
+  goPaymentCreate: function () {
+    this.elements.buttonpaymentcreate.click();
+  },
+
+  clickLendings: function () {
+    this.elements.clicklendings.click();
+  },
+
+  selectLending: function () {
+    this.elements.selectlending.click();
+  },
+
+  createPayment: function () {
+    this.elements.createPaymentButton.click();
   },
 };
