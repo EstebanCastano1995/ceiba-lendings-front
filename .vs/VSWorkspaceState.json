@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\protractor",
-    "\\src\\app",
-    "\\src\\app\\core",
-    "\\src\\app\\core\\components",
-    "\\src\\app\\core\\components\\layout",
+    "\\e2e\\src",
+    "\\protractor\\page-object",
+    "\\src",
     "\\src\\app\\feature",
     "\\src\\app\\feature\\client",
     "\\src\\app\\feature\\client\\list-client",
@@ -13,6 +11,6 @@
     "\\src\\app\\feature\\lending\\list-lending",
     "\\src\\app\\shared"
   ],
-  "SelectedNode": "\\protractor\\conf.js",
+  "SelectedNode": "\\proxy.conf.json",
   "PreviewInSolutionExplorer": false
 }
