@@ -1,9 +1,9 @@
-<div  [ngClass]="{'alert alert-danger':!resultOperation,'alert alert-info':resultOperation,'alert-all':true}" [hidden]="!displaymessage">
+<div [ngClass]="{'alert alert-danger':!resultOperation,'alert alert-info':resultOperation,'alert-all':true}" [hidden]="!displaymessage">
   <strong>Resultado : </strong> <span id="alert">{{responsemessage}}</span>
 </div>
 
 <div class="table-responsive">
-  <table class="table table-striped table-bordered" style="width:100%;">
+  <table id="client-table-list" class="table table-striped table-bordered" style="width:100%;">
     <thead class="text-center">
       <tr>
         <th scope="col">{{ "vistas.cliente.id" | translate }}</th>

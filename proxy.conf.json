@@ -3,10 +3,8 @@
     "target": "http://localhost:8443",
     "secure": false,
     "pathRewrite": { "^/api": "" }
-  }
+  },
+  "_comment": "Todas las peticiones hechas a /api../ desde la aplicación , se mapearan a http://localhost:8443/ que es al dirección donde esta el backend ,esta conversión la hace el servidor , por lo tanto se hace petición de servidor a servidor , mas no de front a servidor como era antes."
 }
 
-/*
-  Todas las peticiones hechas a /api/... desde la aplicación , se mapearan a http://localhost:8443/
-  esta conversión la hace el servidor , por lo tanto se hace petición de servidor a servidor.
-*/
+
