@@ -30,10 +30,13 @@ export class CreateLendingComponent implements OnInit {
 
   selectedClient: Client;
 
+  todayDate: any;
+
   constructor(private translate: TranslateService, private clientService: ClientService,
     private lendingService: LendingService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.todayDate = new Date().toJSON().split('T')[0];
     this.navigated = false;
     this.selectedClient = new Client();
 
