@@ -3,15 +3,14 @@
 module.exports = {
 
   elements: {
-    buttonlending: element(by.id('nav-lending')),
-    buttonlendingcreate: element(by.id('nav-lending-create')),
-    buttonlendinglist: element(by.id('nav-lending-list')),
+
     clientselect: element(by.id('clientid')),
     selectclient: element(by.css("#clientid [value='1102']")),
     lendingValue: element(by.id('lendingvalue')),
     lendingReturnDate: element(by.id('lendingreturndate')),
     createlendingbutton: element(by.id('createLendingButton')),
-    updatelendingbutton: element(by.id('btnUpdate'))
+    updatelendingbutton: element(by.id('btnUpdate-1')),
+    createclientalert: element(by.id('alert'))
   },
 
   go: function (route) {
@@ -19,8 +18,8 @@ module.exports = {
     browser.waitForAngular();
   },
 
-  goLending: function () {
-    this.elements.buttonlending.click();
+  browserSleep: function (time) {
+    browser.sleep(time);
   },
 
   clickclients: function () {
@@ -29,14 +28,6 @@ module.exports = {
 
   selectclient: function () {
     this.elements.selectclient.click();
-  },
-
-  goLendingCreate: function () {
-    this.elements.buttonlendingcreate.click();
-  },
-
-  goLendingList: function () {
-    this.elements.buttonlendinglist.click();
   },
 
   addLendingValue: function (value) {

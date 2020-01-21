@@ -1,9 +1,12 @@
 var basePage = require('./page-object/ClientPage.js');
+var homePage = require('./page-object/HomePage.js');
+var listPage = require('./page-object/ClientListPage.js');
 
 describe('Navegar a ventana listar cliente', function () {
   it('navegar a eliminar cliente', function () {
 
-    basePage.go('http://localhost:4200/home/client/create');
+    homePage.goClient();
+    homePage.goClientCreate();
     expect(basePage.elements.buttonSaveClient.getAttribute('disabled')).toEqual('true');
     basePage.addIdentification('1102');
     basePage.addName("UsuarioProtractor");
@@ -12,15 +15,15 @@ describe('Navegar a ventana listar cliente', function () {
     basePage.addAddress("Dirección usuario protractor");
     expect(basePage.elements.buttonSaveClient.getAttribute('disabled')).toEqual(null);
     basePage.saveClient();
-    browser.sleep(5000);
+    basePage.browserSleep(5000);
     expect(browser.getCurrentUrl()).toBe('http://localhost:4200/home/client/list');
 
-    basePage.go('http://localhost:4200/home');
-    basePage.goClient();
-    basePage.goClientList();
+    homePage.go('http://localhost:4200/home');
+    homePage.goClient();
+    homePage.goClientList();
     expect(browser.getCurrentUrl()).toBe('http://localhost:4200/home/client/list');
-    basePage.deleteClient();
-    browser.sleep(5000);
-    expect(basePage.elements.buttonDeleteClient.isPresent()).toBeFalsy();
+    listPage.deleteClient();
+    basePage.browserSleep(5000);
+    expect(listPage.elements.buttonDeleteClient.isPresent()).toBe(false);
   })
 });

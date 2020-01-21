@@ -67,7 +67,12 @@ export class CreateClientComponent implements OnInit {
     this.displaymessage = true;
     this.responsemessage = response;
     this.resultOperation = result;
-    setTimeout(() => { this.router.navigate(["/home/client/list"]);}, 4000);
+    setTimeout(() => {
+      if (result)
+        this.router.navigate(["/home/client/list"]);
+      else
+        this.displaymessage = false;
+    }, 4000);
   }
 
   private convertDate(dateS:String):Date {

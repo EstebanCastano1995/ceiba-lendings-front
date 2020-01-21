@@ -1,5 +1,5 @@
-<div [ngClass]="{'alert alert-danger':!resultOperation,'alert alert-info':resultOperation,'alert-all':true}" *ngIf="displaymessage">
-  <strong>Resultado : </strong> {{responsemessage}}
+<div  [ngClass]="{'alert alert-danger':!resultOperation,'alert alert-info':resultOperation,'alert-all':true}" [hidden]="!displaymessage">
+  <strong>Resultado : </strong> <div id="alert">{{responsemessage}}</div> 
 </div>
 
 <div class="create-container">

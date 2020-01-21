@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\protractor",
+    "\\protractor\\page-object",
+    "\\src",
     "\\src\\app",
-    "\\src\\app\\core",
-    "\\src\\app\\core\\components",
-    "\\src\\app\\core\\components\\layout",
-    "\\src\\app\\feature\\lending\\create-lending",
-    "\\src\\app\\feature\\payment\\create-payment"
+    "\\src\\app\\feature",
+    "\\src\\app\\feature\\client",
+    "\\src\\app\\feature\\client\\list-client",
+    "\\src\\app\\feature\\lending",
+    "\\src\\app\\feature\\lending\\list-lending"
   ],
-  "SelectedNode": "\\protractor",
+  "SelectedNode": "\\protractor\\shouldCreateLending.js",
   "PreviewInSolutionExplorer": false
 }

@@ -93,7 +93,12 @@ export class PaymentComponent implements OnInit {
     this.displaymessage = true;
     this.responsemessage = response;
     this.resultOperation = result;
-    setTimeout(() => { this.router.navigate(["/home/lending/list"]); }, 4000);
+    setTimeout(() => {
+      if (result)
+        this.router.navigate(["/home/lending/list"]);
+      else
+        this.displaymessage = false;
+    }, 4000);
   }
 
   private onLendingChange(lendingId: number) {
