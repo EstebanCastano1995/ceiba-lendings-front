@@ -5,3 +5,8 @@
     "pathRewrite": { "^/api": "" }
   }
 }
+
+/*
+  Todas las peticiones hechas a /api/... desde la aplicación , se mapearan a http://localhost:8443/
+  esta conversión la hace el servidor , por lo tanto se hace petición de servidor a servidor.
+*/

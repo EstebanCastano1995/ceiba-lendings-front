@@ -2,15 +2,17 @@
   "ExpandedNodes": [
     "",
     "\\protractor",
-    "\\protractor\\page-object",
-    "\\src",
     "\\src\\app",
+    "\\src\\app\\core",
+    "\\src\\app\\core\\components",
+    "\\src\\app\\core\\components\\layout",
     "\\src\\app\\feature",
     "\\src\\app\\feature\\client",
     "\\src\\app\\feature\\client\\list-client",
     "\\src\\app\\feature\\lending",
-    "\\src\\app\\feature\\lending\\list-lending"
+    "\\src\\app\\feature\\lending\\list-lending",
+    "\\src\\app\\shared"
   ],
-  "SelectedNode": "\\protractor\\shouldCreateLending.js",
+  "SelectedNode": "\\protractor\\conf.js",
   "PreviewInSolutionExplorer": false
 }
