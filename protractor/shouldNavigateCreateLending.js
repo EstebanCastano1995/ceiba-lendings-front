@@ -7,6 +7,7 @@ describe('Navegar a ventana crear prestamo', function () {
     basePage.goLending();
     basePage.browserSleep(1000);
     basePage.goLendingCreate();
+    basePage.browserSleep(1000);
     expect(browser.getCurrentUrl()).toBe('http://localhost:4200/home/lending/create');
   })
 });

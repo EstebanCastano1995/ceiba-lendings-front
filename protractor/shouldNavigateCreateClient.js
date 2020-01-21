@@ -7,6 +7,7 @@ describe('Navegar a ventana crear clientes', function () {
     basePage.goClient();
     basePage.browserSleep(1000);
     basePage.goClientCreate();
+    basePage.browserSleep(1000);
     expect(browser.getCurrentUrl()).toBe('http://localhost:4200/home/client/create');
   })
 });

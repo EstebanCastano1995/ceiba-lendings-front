@@ -7,6 +7,7 @@ describe('Navegar a ventana registro pago', function () {
     basePage.goPayment();
     basePage.browserSleep(1000);
     basePage.goPaymentCreate();
+    basePage.browserSleep(1000);
     expect(browser.getCurrentUrl()).toBe('http://localhost:4200/home/payment/create');
   })
 });

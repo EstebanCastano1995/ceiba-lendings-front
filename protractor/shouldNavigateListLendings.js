@@ -7,6 +7,7 @@ describe('Navegar a ventana listar prestamo', function () {
     basePage.goLending();
     basePage.browserSleep(1000);
     basePage.goLendingList();
+    basePage.browserSleep(1000);
     expect(browser.getCurrentUrl()).toBe('http://localhost:4200/home/lending/list');
   })
 });
