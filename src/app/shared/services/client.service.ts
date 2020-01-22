@@ -13,7 +13,7 @@ export class ClientService {
   private options: RequestOptions;
 
   constructor(private http: Http) {
-    this.api_url = environment.api_url + "/service/client";
+    this.api_url = `${environment.api_url}/service/client`;
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -28,7 +28,7 @@ export class ClientService {
   }
 
   public deleteClient(client: Client) {
-    let response = this.http.delete(this.api_url + "/" + client.id);
+    let response = this.http.delete(`${this.api_url}/${client.id}`);
     return response;
   }
 

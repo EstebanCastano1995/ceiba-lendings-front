@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from '../../../shared/services/payment.service';
+import { PaymentService } from './../shared/services/payment.service';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Payment } from '../../../shared/entities/Payment';
+import { Payment } from '../shared/entities/Payment';
 import { Lending } from '../../../shared/entities/Lending';
 import { LendingService } from '../../../shared/services/lending.service';
 import { Client } from '../../../shared/entities/Client';
 import { TranslateService } from '@ngx-translate/core';
 import { Router} from "@angular/router";
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-payment',
@@ -28,7 +29,7 @@ export class PaymentComponent implements OnInit {
   selectedLending: Lending;
 
 
-  constructor(private router: Router,private translate: TranslateService, private paymentService: PaymentService, private lendingsService: LendingService) { }
+  constructor(private alertService: AlertService, private router: Router, private translate: TranslateService, private paymentService: PaymentService, private lendingsService: LendingService) { }
 
   ngOnInit() {
     this.selectedLending = new Lending();
@@ -45,12 +46,12 @@ export class PaymentComponent implements OnInit {
           this.lendingsList = result;
         } else {
           console.log('error');
-          this.showMessageResponse(false, this.translate.instant('alerts.get.prestamo'));
+          this.alertService.error(this.translate.instant('alerts.get.prestamo'));
         }
-      },
+      },//Error handler de front-end para centralizar captura de error
       err => {
         console.log(err);
-        this.showMessageResponse(false, JSON.parse(err._body).message);
+        this.alertService.error(JSON.parse(err._body).message);
       }
     );
   }
@@ -81,24 +82,12 @@ export class PaymentComponent implements OnInit {
       let result = data;
       if (result) {
         console.log(result);
-        this.showMessageResponse(true, this.translate.instant('alerts.create.pago'));
+        this.alertService.error(this.translate.instant('alerts.create.pago'));
       }
     }, err => {
         console.log(err);
-        this.showMessageResponse(false, JSON.parse(err._body).message);
+        this.alertService.error(JSON.parse(err._body).message);
     });
-  }
-
-  private showMessageResponse(result: boolean, response: string) {
-    this.displaymessage = true;
-    this.responsemessage = response;
-    this.resultOperation = result;
-    setTimeout(() => {
-      if (result)
-        this.router.navigate(["/home/lending/list"]);
-      else
-        this.displaymessage = false;
-    }, 4000);
   }
 
   private onLendingChange(lendingId: number) {

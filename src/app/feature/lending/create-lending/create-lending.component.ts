@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { LendingService } from '../../../shared/services/lending.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-create-lending',
@@ -32,7 +33,7 @@ export class CreateLendingComponent implements OnInit {
 
   todayDate: any;
 
-  constructor(private translate: TranslateService, private clientService: ClientService,
+  constructor(private alertService: AlertService, private translate: TranslateService, private clientService: ClientService,
     private lendingService: LendingService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -54,12 +55,12 @@ export class CreateLendingComponent implements OnInit {
           if (result) {
             this.clientsList = result;
           } else {
-            this.showMessageResponse(false, this.translate.instant('alerts.get.cliente'));
+            this.alertService.error(this.translate.instant('alerts.get.cliente'), true);
           }
         },
         err => {
           console.log(err);
-          this.showMessageResponse(false, JSON.parse(err._body).message);
+          this.alertService.error(JSON.parse(err._body).message, true);
         }
       );
     
@@ -94,11 +95,11 @@ export class CreateLendingComponent implements OnInit {
         let result = data;
         if (result) {
           console.log(result);
-          this.showMessageResponse(true, this.translate.instant('alerts.create.prestamo'));
+          this.alertService.success(this.translate.instant('alerts.create.prestamo'), true);
         }
       }, err => {
-        console.log(err);
-        this.showMessageResponse(false, JSON.parse(err._body).message);
+          console.log(err);
+          this.alertService.error(JSON.parse(err._body).message, true);
       });
     }
   }
@@ -117,11 +118,11 @@ export class CreateLendingComponent implements OnInit {
       let result = data;
       console.log(result);
       if (result) {
-        this.showMessageResponse(true, this.translate.instant('alerts.update.prestamo'));
+        this.alertService.success(this.translate.instant('alerts.update.prestamo'), true);
       }
     }, err => {
         console.log(err);
-        this.showMessageResponse(false, JSON.parse(err._body).message);
+        this.alertService.error(JSON.parse(err._body).message, true);
     });
   }
 
@@ -163,19 +164,6 @@ export class CreateLendingComponent implements OnInit {
       }
     });
     return lending;
-  }
-
-
-  private showMessageResponse(result: boolean, response: string) {
-    this.displaymessage = true;
-    this.responsemessage = response;
-    this.resultOperation = result;
-    setTimeout(() => {
-      if (result)
-        this.router.navigate(["/home/lending/list"]);
-      else
-        this.displaymessage = false;
-    }, 4000);
   }
 
   private onClientsChange(idClient:number) {

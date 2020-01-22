@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from "@angular/http";
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import { Payment } from '../../shared/entities/Payment';
 
 @Injectable({
@@ -13,7 +13,8 @@ export class PaymentService {
   private options: RequestOptions;
 
   constructor(private http: Http) {
-    this.api_url = environment.api_url + "/service/payment";
+    
+    this.api_url = `${environment.api_url}/service/payment`;
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });

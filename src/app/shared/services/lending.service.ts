@@ -13,7 +13,7 @@ export class LendingService {
   private options: RequestOptions;
 
   constructor(private http: Http) {
-    this.api_url = environment.api_url + "/service/lending";
+    this.api_url = `${environment.api_url}/service/lending`;
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -30,7 +30,7 @@ export class LendingService {
   public updateLending(lending: Lending) {
     console.log("UPDATING LENDING");
     console.log(lending);
-    let response = this.http.put(this.api_url + "/" + lending.id, JSON.stringify(lending), this.options);
+    let response = this.http.put(`${this.api_url}/${lending.id}`, JSON.stringify(lending), this.options);
     return response;
   }
 

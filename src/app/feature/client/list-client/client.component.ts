@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../../shared/services/client.service';
 import { Client } from '../../../shared/entities/Client';
 import { TranslateService } from '@ngx-translate/core';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-client',
@@ -18,7 +19,7 @@ export class ClientComponent implements OnInit {
 
   resultOperation: Boolean;
 
-  constructor(private translate: TranslateService,private clientService: ClientService) { }
+  constructor(private alertService:AlertService,private translate: TranslateService,private clientService: ClientService) { }
 
   ngOnInit() {
     this.getClients();
@@ -28,15 +29,15 @@ export class ClientComponent implements OnInit {
     this.clientService.deleteClient(cliente).subscribe(
       response => {
         if (response) {
-          this.showMessageResponse(true, this.translate.instant('alerts.delete.cliente'));
+          this.alertService.success(this.translate.instant('alerts.delete.cliente'), true);
           this.getClients();
         } else {
-          this.showMessageResponse(false, this.translate.instant('alerts.delete.cliente.fail'));
+          this.alertService.error(this.translate.instant('alerts.delete.cliente.fail'), true);
         }
       },
       err => {
         console.log(err);
-        this.showMessageResponse(false, JSON.parse(err._body).message);
+        this.alertService.error(JSON.parse(err._body).message, true);
       }
     );
   }
@@ -48,21 +49,13 @@ export class ClientComponent implements OnInit {
         if (result) {
           this.clientsList = result;
         } else {
-          this.showMessageResponse(false, this.translate.instant('alerts.get.cliente'));
+          this.alertService.error(this.translate.instant('alerts.get.cliente'), true);
         }
       },
       err => {
         console.log(err);
-        this.showMessageResponse(false, err);
+        this.alertService.error(err, true);
       }
     );
   }
-
-  private showMessageResponse(result: boolean, response: string) {
-    this.displaymessage = true;
-    this.responsemessage = response;
-    this.resultOperation = result;
-    setTimeout(() => { this.displaymessage = false; }, 4000);
-  }
-
 }

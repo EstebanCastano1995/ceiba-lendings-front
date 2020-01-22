@@ -5,26 +5,25 @@ import { NgModule } from '@angular/core';
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpModule } from "@angular/http";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import {ReactiveFormsModule,FormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID } from "@angular/core";
-
-import { ClientModule } from '../app/feature/client/client.module';
-import { PaymentModule } from '../app/feature/payment/payment.module';
-import { LendingModule } from '../app/feature/lending/lending.module';
+import { HttpErrorInterceptor } from './core/error/HttpErrorInterceptor';
 
 //components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './feature/home/home.component';
 import { LayoutComponent } from './core/components/layout/layout.component';
+import { AlertComponent } from './core/components/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LayoutComponent
+    LayoutComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -40,17 +39,20 @@ import { LayoutComponent } from './core/components/layout/layout.component';
     HttpModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    ClientModule,
-    PaymentModule,
-    LendingModule
+    ReactiveFormsModule
   ],
-  exports: [LayoutComponent],
+  exports: [LayoutComponent, AlertComponent],
   providers: [
     {
       provide: LOCALE_ID,
       useValue: "es-ES"
-    }],
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

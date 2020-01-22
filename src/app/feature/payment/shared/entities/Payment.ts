@@ -1,4 +1,4 @@
-import { Lending } from './Lending';
+import { Lending } from './../../../../shared/entities/Lending';
 
 export class Payment {
 

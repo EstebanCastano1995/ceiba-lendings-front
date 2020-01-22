@@ -1,15 +1,11 @@
-<div  [ngClass]="{'alert alert-danger':!resultOperation,'alert alert-info':resultOperation,'alert-all':true}" [hidden]="!displaymessage">
-  <strong>Resultado : </strong> <div id="alert">{{responsemessage}}</div> 
-</div>
-
 <div class="create-container">
   <p class="welcome">{{ "vistas.cliente.titulo" | translate }}</p>
   <div class="form">
     <form [formGroup]="clientForm">
       <div class="form-group">
         <label>{{ "vistas.cliente.id" | translate }}</label>
-        <input id="identification" type="number" class="form-control" formControlName="identification"/>
-        <span  class="obligatory-span" *ngIf="clientForm.controls['identification'].hasError('required')">
+        <input id="identification" type="number" class="form-control" formControlName="identification" />
+        <span class="obligatory-span" *ngIf="clientForm.controls['identification'].hasError('required')">
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
@@ -41,9 +37,9 @@
           <strong>{{ "validation.required_field" | translate }}</strong>
         </span>
       </div>
-      <button id="createClientButton" [disabled]="!clientForm.valid"  class="btn btn-primary" (click)="createClient()">
+      <button id="createClientButton" [disabled]="!clientForm.valid" class="btn btn-primary" (click)="createClient()">
         {{ "vistas.registrar" | translate }}
-      </button>      
+      </button>
     </form>
   </div>
 </div>
