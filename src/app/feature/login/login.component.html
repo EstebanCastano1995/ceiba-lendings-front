@@ -1,0 +1,56 @@
+<app-alert></app-alert>
+
+<div class="container center">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card-group">
+        <div class="card p-4">
+          <div class="card-body padding">
+            <h1 class="login-title">Login</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+              <div class="input-group mb-4 div-padding">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </div>
+                <input class="form-control input-login" type="text" formControlName="username" placeholder="Username"
+                       autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              </div>
+
+              <div *ngIf="submitted && f.username.errors">
+                <p class="invalid-feedback" *ngIf="f.username.errors.required">Username is required</p>
+              </div>
+
+              <div class="input-group mb-4 div-padding">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fa fa-key"></i>
+                  </span>
+                </div>
+
+                <input class="form-control input-login" type="password" formControlName="password"
+                       placeholder="Password" autocomplete="off"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+
+              </div>
+
+              <div *ngIf="submitted && f.password.errors">
+                <p class="invalid-feedback" *ngIf="f.password.errors.required">Password is required</p>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <button class="btn btn-primary px-4 button-login" (click)="onSubmit()" type="button">Login</button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

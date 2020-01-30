@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 import { Client } from '../../shared/entities/Client';
 import { environment } from '../../../environments/environment';
 
@@ -9,21 +9,15 @@ import { environment } from '../../../environments/environment';
 export class ClientService {
 
   private api_url: string;
-  private headers: Headers;
-  private options: RequestOptions;
 
-  constructor(private http: Http) {
-    this.api_url = `${environment.api_url}/service/client`;
-    this.headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    this.options = new RequestOptions({ headers: this.headers });
+  constructor(private http: HttpClient) {
+    this.api_url = `${environment.api_url}/private/client`;
   }
 
   public createClient(client: Client) {
     console.log("CREATING CLIENT");
     console.log(client);
-    let response = this.http.post(this.api_url, JSON.stringify(client), this.options);
+    let response = this.http.post(this.api_url, JSON.stringify(client));
     return response;
   }
 
@@ -33,7 +27,7 @@ export class ClientService {
   }
 
   public getClients() {
-    let response = this.http.get(this.api_url, this.options);
+    let response = this.http.get(this.api_url);
     return response;
   }
 }

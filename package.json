@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "start-webdriver": "webdriver-manager start",
     "start-protractor": "cd protractor && protractor conf.js",
     "build": "ng build",
     "test": "ng test",
@@ -24,6 +23,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@auth0/angular-jwt": "^3.0.1",
     "@ng-bootstrap/ng-bootstrap": "^5.1.5",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",

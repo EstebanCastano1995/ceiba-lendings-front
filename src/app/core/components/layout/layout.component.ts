@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../shared/services/authentication.service';
+
+
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -8,12 +12,15 @@ export class LayoutComponent implements OnInit {
 
   showSidebar: Boolean;
 
-  constructor() {
-    document.getElementById("page-top").style.backgroundColor = '#FFFFFF';
-    this.showSidebar = false;
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
+
   }
 
   ngOnInit() {
+    document.getElementById("page-top").style.backgroundColor = '#FFFFFF';
+    this.showSidebar = false;
+    this.validateCurrentUser();
+
   }
 
   showSideBarMethod() {
@@ -21,5 +28,14 @@ export class LayoutComponent implements OnInit {
       this.showSidebar = false;
     else
       this.showSidebar = true;
+  }
+
+  logout() {
+    this.router.navigate(["/"]);
+  }
+
+  validateCurrentUser() {
+    if (!this.authenticationService.validateCurrentUser())
+      this.router.navigate(["/"]);
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 import { environment } from '../../../../../environments/environment';
 import { Payment } from '../../shared/entities/Payment';
 
@@ -9,22 +9,15 @@ import { Payment } from '../../shared/entities/Payment';
 export class PaymentService {
 
   private api_url: string;
-  private headers: Headers;
-  private options: RequestOptions;
 
-  constructor(private http: Http) {
-    
-    this.api_url = `${environment.api_url}/service/payment`;
-    this.headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    this.options = new RequestOptions({ headers: this.headers });
+  constructor(private http: HttpClient) {
+    this.api_url = `${environment.api_url}/private/payment`;
   }
 
   public createPayment(payment: Payment) {
     console.log("CREATING PAYMENT");
     console.log(payment);
-    let response = this.http.post(this.api_url, JSON.stringify(payment), this.options);
+    let response = this.http.post(this.api_url, JSON.stringify(payment));
     return response;
   }
 }
